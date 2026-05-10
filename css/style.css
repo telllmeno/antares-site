@@ -533,6 +533,47 @@ section {
     color: var(--color-text);
 }
 
+/* ===== STATISTICS SECTION ===== */
+.statistics {
+    background: var(--color-primary);
+    padding: 80px 0;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 40px;
+    text-align: center;
+}
+
+.stat-item {
+    padding: 30px;
+    background: var(--color-secondary);
+    border-radius: 8px;
+    border: 1px solid var(--color-border);
+    transition: var(--transition);
+}
+
+.stat-item:hover {
+    transform: translateY(-5px);
+    border-color: var(--color-accent);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+.stat-number {
+    font-family: var(--font-heading);
+    font-size: 48px;
+    font-weight: 800;
+    color: var(--color-accent);
+    margin-bottom: 10px;
+}
+
+.stat-label {
+    color: var(--color-text-muted);
+    font-size: 15px;
+    font-weight: 500;
+}
+
 /* ===== ADVANTAGES SECTION ===== */
 .advantages {
     background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-primary) 100%);
@@ -569,13 +610,80 @@ section {
     font-size: 15px;
 }
 
+/* ===== WORKFLOW SECTION ===== */
+.workflow {
+    background: var(--color-secondary);
+    padding: 100px 0;
+}
+
+.workflow-timeline {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.workflow-timeline::before {
+    content: '';
+    position: absolute;
+    left: 40px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--color-border);
+}
+
+.workflow-step {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 50px;
+    position: relative;
+}
+
+.workflow-step:last-child {
+    margin-bottom: 0;
+}
+
+.step-number {
+    flex-shrink: 0;
+    width: 80px;
+    height: 80px;
+    background: var(--color-primary);
+    border: 2px solid var(--color-accent);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-heading);
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--color-accent);
+    z-index: 1;
+}
+
+.step-content {
+    flex: 1;
+    padding-top: 15px;
+}
+
+.step-title {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: var(--color-text);
+}
+
+.step-desc {
+    color: var(--color-text-muted);
+    font-size: 15px;
+    line-height: 1.7;
+}
+
 /* ===== PORTFOLIO SECTION ===== */
 .portfolio {
-    background: var(--color-secondary);
+    background: var(--color-primary);
 }
 
 .portfolio-placeholder {
-    background: var(--color-primary);
+    background: var(--color-secondary);
     border: 2px dashed var(--color-border);
     border-radius: 8px;
     padding: 80px 40px;
@@ -951,6 +1059,158 @@ section {
     }
 }
 
+/* ===== FADE IN ANIMATION ===== */
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 968px) {
+    .workflow-timeline::before {
+        left: 30px;
+    }
+    
+    .step-number {
+        width: 60px;
+        height: 60px;
+        font-size: 18px;
+    }
+    
+    .workflow-step {
+        gap: 20px;
+    }
+    
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+    
+    .stat-number {
+        font-size: 36px;
+    }
+}
+
+@media (max-width: 768px) {
+    .hamburger {
+        display: flex;
+    }
+    
+    .nav-menu {
+        position: fixed;
+        top: 70px;
+        left: -100%;
+        width: 100%;
+        background: var(--color-primary);
+        flex-direction: column;
+        padding: 30px;
+        gap: 20px;
+        border-top: 1px solid var(--color-border);
+        transition: var(--transition);
+    }
+    
+    .nav-menu.active {
+        left: 0;
+    }
+    
+    .hero-title {
+        font-size: 28px;
+    }
+    
+    .section-title {
+        font-size: 24px;
+    }
+    
+    .about-content,
+    .contacts-wrapper {
+        grid-template-columns: 1fr;
+    }
+    
+    .footer-wrapper {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .workflow-timeline::before {
+        left: 25px;
+    }
+    
+    .step-number {
+        width: 50px;
+        height: 50px;
+        font-size: 16px;
+    }
+    
+    .workflow-step {
+        gap: 15px;
+    }
+    
+    .step-title {
+        font-size: 18px;
+    }
+    
+    .step-desc {
+        font-size: 14px;
+    }
+    
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .advantages-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-logo-img {
+        height: 100px;
+    }
+    
+    .hero-title {
+        font-size: 24px;
+    }
+    
+    .hero-subtitle {
+        font-size: 14px;
+    }
+    
+    .btn {
+        padding: 12px 25px;
+        font-size: 12px;
+    }
+    
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .software-grid {
+        gap: 20px;
+    }
+    
+    .software-item {
+        padding: 15px 25px;
+    }
+}
+
+@keyframes modalIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
 /* ===== RESPONSIVE ===== */
 @media (max-width: 968px) {
     .nav-menu {
@@ -1037,14 +1297,4 @@ section {
     }
 }
 
-/* ===== SCROLL ANIMATIONS ===== */
-.fade-in {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-}
 
-.fade-in.visible {
-    opacity: 1;
-    transform: translateY(0);
-}

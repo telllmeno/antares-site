@@ -1,3 +1,40 @@
+// ===== STATISTICS COUNTER ANIMATION =====
+const statNumbers = document.querySelectorAll('.stat-number');
+
+const countObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const target = parseInt(entry.target.getAttribute('data-target'));
+            animateCounter(entry.target, target);
+            countObserver.unobserve(entry.target);
+        }
+    });
+}, { threshold: 0.5 });
+
+statNumbers.forEach(num => countObserver.observe(num));
+
+function animateCounter(element, target) {
+    let count = 0;
+    const increment = target / 50;
+    const duration = 2000;
+    const stepTime = duration / 50;
+    
+    const timer = setInterval(() => {
+        count += increment;
+        if (count >= target) {
+            count = target;
+            clearInterval(timer);
+        }
+        
+        // Format number with K suffix for large numbers
+        if (target >= 1000) {
+            element.textContent = Math.floor(count) + '+';
+        } else {
+            element.textContent = Math.floor(count);
+        }
+    }, stepTime);
+}
+
 // ===== DOM ELEMENTS =====
 const navbar = document.getElementById('navbar');
 const hamburger = document.getElementById('hamburger');
